@@ -9,7 +9,7 @@
   "author": "Flaglias",
   "license": "ISC",
   "dependencies": {
-    "canvas": "^2.5.0",
+    "canvas": "^2.6.0",
     "canvas-constructor": "^3.1.0",
     "discord.js": "^11.5.1",
     "fs": "0.0.1-security",
