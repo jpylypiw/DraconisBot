@@ -7,7 +7,7 @@ const petsfile = require("../data/rpg/pets.json");
 
 /* Define */
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
 // Create Pet Database
 if(!petsfile["pets"]) {

@@ -7,7 +7,7 @@ const Discord = require("discord.js");
 
 /* Define */
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
   bot.fetchUser(`289880765859364864`).then(myUser => {
     let help = new Discord.RichEmbed()

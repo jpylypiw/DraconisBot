@@ -11,7 +11,7 @@ const gw2api = "https://api.guildwars2.com/v2/"
 const gw2apiAchivements = gw2api + "achievements/"
 const gw2apiDailys = gw2api + "achievements/daily/"
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
     moment.locale()
     

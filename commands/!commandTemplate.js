@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 
 /* Define */
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
   let test = new Discord.RichEmbed()
     .setFooter(`${botconfig["version"].version} | ${botconfig["version"].date}`)

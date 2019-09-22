@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 
 /* Define */
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
     if(!message.member.guild.me.hasPermission('ADMINISTRATOR')) {
         message.channel.send("**I dont have the Permission to do that!** `[ADMINISTRATOR]`").then(msg => msg.delete(4000));
