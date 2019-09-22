@@ -1,0 +1,5 @@
+# remove single files 
+blablabla.file
+
+# remove complete language
+*.file
