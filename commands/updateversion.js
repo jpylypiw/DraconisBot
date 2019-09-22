@@ -7,7 +7,7 @@ const moment = require("moment");
 
 /* Define */
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
 if(message.author.id === "289880765859364864") {
     

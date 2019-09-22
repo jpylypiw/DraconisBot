@@ -9,6 +9,7 @@ const moment = require("moment");
 /* Data */
 const login = require("./data/secret/token.json")
 const botconfig = require("./data/settings/botconfig.json");
+const userData = require("./data/rpg/userdata.json");
 
 /* Event Files */
 let voiceupdatefile = require(`./botupdates/voicestateupdate.js`)
@@ -83,6 +84,8 @@ fs.readdir("./commands/", (err, files) => {
 
 /* Bot on Message */
 bot.on("message", async message => {
+
+    // If Author is Bot ord Type is DM, return
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
 
@@ -93,9 +96,22 @@ bot.on("message", async message => {
         const args = message.content.slice(prefix.length).trim().split(` `);
         const cmd = args.shift().toLowerCase();
 
+        // define dcuser as message author if nobody is mentioned 
+        var dcuser 
+        if(!message.mentions.users.first()) {
+            dcuser = message.author
+        } else {
+            dcuser = message.mentions.users.first()
+        }
+
+        // Create DataBase for User
+        if(!userData[dcuser.id] || dcuser.tag !== userData[dcuser.id].discordname) {
+            createdatabasefile.run(bot, dcuser);
+        }
+
         // get commands and execute it
         let commandfile = bot.commands.get(cmd);
-        if (commandfile) commandfile.run(bot, message, args, botconfig);
+        if (commandfile) commandfile.run(bot, message, args, botconfig, dcuser);
         if (message.content.indexOf(prefix) !== 0) return;
     }
 });

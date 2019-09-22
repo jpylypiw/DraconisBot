@@ -6,7 +6,7 @@ const userData = require("../data/rpg/userdata.json");
 
 /* Define */
 
-module.exports.run = async (bot, message, args, botconfig) => {
+module.exports.run = async (bot, message, args, botconfig, dcuser) => {
 
   let player = message.author.id
   let help = new Discord.RichEmbed()
