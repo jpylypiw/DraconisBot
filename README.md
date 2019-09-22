@@ -28,7 +28,6 @@ This repository is for a discord bot, which has auto channels and more features 
 You can find the license [here](/LICENSE.md "LICENSE").  
 And our website [here](https://nekozbyte.com "NekozByte").
 
-<br>
 <hr>  
 
 ###### &copy; nekozbyte | 2019
