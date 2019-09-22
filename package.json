@@ -1,0 +1,25 @@
+{
+  "name": "drachinusbot",
+  "version": "1.1.1",
+  "description": "Helpful DiscordBot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Flaglias",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.5.0",
+    "canvas-constructor": "^3.1.0",
+    "discord.js": "^11.5.1",
+    "fs": "0.0.1-security",
+    "google-translate": "^2.3.0",
+    "google-translate-api": "^2.3.0",
+    "google-translate-api-browser": "^1.1.71",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.1",
+    "request": "^2.88.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}

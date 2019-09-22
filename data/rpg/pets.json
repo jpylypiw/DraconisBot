@@ -1,0 +1,16 @@
+{
+    "pets": {
+        "level1-5": {
+            "names": "&Gram&Tsuchigumo&Eulenbär&Werwolf&Amphisbaena"
+        },
+        "level6-10": {
+            "names": "&Kato&Genbu&Hi Nezumi&Isonade&DaibaWashi&Gyokuto"
+        },
+        "level11-15": {
+            "names": "&Kerberos&Ungoliant&Greif&Fafnir&Pegasus&Enko&Karajishi&Seinaru Shika"
+        },
+        "level16-20": {
+            "names": "&Carcharoth&Wyvern/Drache&Einhorn&Yatagarasu&Tengen Kujaku"
+        }
+    }
+}

@@ -1,100 +1,123 @@
-/*
-  Go on your labels page (https://github.com/nekozbyte/repo-template/labels)
-  Edit the following label array
-  Press F12 and copy paste this into your console
-  Press Enter!!
-*/
+/* normal = Draconis | test = TestBot */
+let instance = "test";
 
-[
-    {
-      "name": "C1 - bug",
-      "description": "A normal bug, if something isn't working properly",
-      "color": "cc6565"
-    },
-    {
-      "name": "C2 - feature",
-      "description": "A change, improvement or suggestion of something",
-      "color": "dfbb5e"
-    },
-    {
-      "name": "C3 - question",
-      "description": "This issue is a question",
-      "color": "ece476"
-    },
-    {
-      "name": "C4 - duplicate",
-      "description": "There is already an issue with this topic",
-      "color": "b2cf56"
-    },
-    {
-      "name": "C5 - more info needed",
-      "description": "More information about this issue would be nice",
-      "color": "3ad1b2"
-    },
-    {
-      "name": "P1",
-      "description": "All users will encounter this issue",
-      "color": "ffffff"
-    },
-    {
-      "name": "P2",
-      "description": "Most of the users will encounter this issue",
-      "color": "ffffff"
-    },
-    {
-      "name": "P3",
-      "description": "About half of the users will encounter this issue",
-      "color": "ffffff"
-    },
-    {
-      "name": "P4",
-      "description": "Most of the users will not encounter this issue",
-      "color": "ffffff"
-    },
-    {
-      "name": "T1 - critical",
-      "description": "The bug causes data loss, crashes, etc",
-      "color": "6086e6"
-    },
-    {
-      "name": "T2 - hard",
-      "description": "The bug reports incorrect functionality, bad functionality, a confusing user experience, etc",
-      "color": "6086e6"
-    },
-    {
-      "name": "T3 - medium",
-      "description": "The bug reports cosmetic items, formatting, spelling, colors, etc.",
-      "color": "6086e6"
-    },
+/* Modules */
+const Discord = require("discord.js"); 1
+const fs = require("fs");
+const moment = require("moment");
 
-  ].forEach(function(label) {
-    addLabel(label)
-  })
-  
-  function updateLabel (label) {
-    var flag = false;
-    [].slice.call(document.querySelectorAll(".labels-list-item"))
-    .forEach(function(element) {
-      if (element.querySelector('.label-link').textContent.trim() === label.name) {
-        flag = true
-        element.querySelector('.js-edit-label').click()
-        element.querySelector('.js-new-label-name-input').value = label.name
-        element.querySelector('.js-new-label-description-input').value = label.description
-        element.querySelector('.js-new-label-color-input').value = '#' + label.color
-        element.querySelector('.js-edit-label-cancel ~ .btn-primary').click()
-      }
+/* Data */
+const login = require("./data/secret/token.json")
+const botconfig = require("./data/settings/botconfig.json");
+
+/* Event Files */
+let voiceupdatefile = require(`./botupdates/voicestateupdate.js`)
+let createdatabasefile = require(`./botupdates/createdatabase.js`)
+let presenceupdatefile = require(`./botupdates/presenceupdate.js`)
+
+// Define
+const bot = new Discord.Client();
+const prefix = botconfig.prefix;
+
+// Deutsch
+moment.locale(`de`);
+
+// Set Statuses and Interval Timer Minutes
+const activities_list = [
+    `.help | auf ${bot.guilds.size} Servern!`,
+    `.help | also try .info`, 
+    `.help | Autochannel 👍`,
+    `Guild Wars 2`,
+]
+let minutes = 120
+
+/* Bot on Start */
+bot.on("ready", async () => {
+
+    // Status & Activity
+    bot.user.setStatus("dnd");
+
+    bot.user.setActivity(`.help`, { type: "PLAYING" });
+
+    // Change Status 
+    setInterval(() => {
+        const index = Math.floor(Math.random() * activities_list.length);
+        bot.user.setActivity(activities_list[index], { type: "PLAYING" });
+    }, 1000 * 60 * minutes);
+
+    // Log
+    console.log(`${bot.user.username} ist bereit auf ${bot.guilds.size} Server(n)!`);
+    console.log("https://discordapp.com/oauth2/authorize/?permissions=536014032&scope=bot&client_id=" + bot.user.id)
+});
+
+/* Bot when added to Guild */
+bot.on("guildCreate", guild => {
+    console.log(`Neuem Discord beigetreten: ${guild.name} (ID: ${guild.id}). Der Discord hat ${guild.memberCount} Mitglieder!`);
+});
+
+/* Bot when removed from Guild */
+bot.on("guildDelete", guild => {
+    console.log(`Ich wurde entfernt von: ${guild.name} (ID: ${guild.id})`);
+});
+
+/* Command Handler 1 */
+bot.commands = new Discord.Collection();
+fs.readdir("./commands/", (err, files) => {
+    
+    // log error
+    if (err) console.log(err);
+
+    // let every file with .js in ./commands/ be "jsfile"
+    let jsfile = files.filter(f => f.split(".").pop() === "js")
+    if (jsfile <= 0) {
+        console.log("Commands not found.");
+        return;
+    }
+
+    // set the commands in the new collection
+    jsfile.forEach((f, i) => {
+        let props = require(`./commands/${f}`);
+        bot.commands.set(props.help.name, props)
     })
-    return flag
-  }
-  
-  function addNewLabel (label) {
-    document.querySelector('.js-new-label-name-input').value = label.name
-    document.querySelector('.js-new-label-description-input').value = label.description
-    document.querySelector('.js-new-label-color-input').value = '#' + label.color
-    document.querySelector('.js-details-target ~ .btn-primary').disabled = false
-    document.querySelector('.js-details-target ~ .btn-primary').click()
-  }
-  
-  function addLabel (label) {
-    if (!updateLabel(label)) addNewLabel(label)
-  }
+});
+
+/* Bot on Message */
+bot.on("message", async message => {
+    if (message.author.bot) return;
+    if (message.channel.type === "dm") return;
+
+    /* Command Handler 2 */
+    if (message.content.startsWith(prefix)) {
+
+        // define args and commands
+        const args = message.content.slice(prefix.length).trim().split(` `);
+        const cmd = args.shift().toLowerCase();
+
+        // get commands and execute it
+        let commandfile = bot.commands.get(cmd);
+        if (commandfile) commandfile.run(bot, message, args, botconfig);
+        if (message.content.indexOf(prefix) !== 0) return;
+    }
+});
+
+/* Bot on Voice State Update */
+bot.on('voiceStateUpdate', async (oldMember, newMember) => {
+    if (newMember.user.bot || oldMember.user.bot) return;
+    voiceupdatefile.run(bot, oldMember, newMember);
+});
+
+/* Bot on Presence Update */
+bot.on('presenceUpdate', (oldMember, newMember) => {
+    if (newMember.user.bot || oldMember.user.bot) return;
+    presenceupdatefile.run(bot, oldMember, newMember);
+});
+
+/* Bot Login | select instance */
+if (instance === "normal") {
+    var token = login.token
+} else if(instance === "test") {
+    var token = login.testToken
+}
+
+/* Bot Login | login with selected key */
+bot.login(token);

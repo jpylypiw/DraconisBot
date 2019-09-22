@@ -1,0 +1,18 @@
+{
+    "prefix": ".",
+    "colors": {
+        "rot": "#cc6565",
+        "orange": "#da825f",
+        "gelb": "#ece476",
+        "hellgrün": "#b2cf56",
+        "dunkelgrün": "#57bd6e",
+        "blaugrün": "#3ad1b2",
+        "dunkelblau": "#5194d6",
+        "lila": "#8756e6",
+        "pink": "#db61e2"
+    },
+    "version": {
+        "date": "22092019",
+        "version": "Beta Build 0.22"
+    }
+}
