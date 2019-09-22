@@ -6,19 +6,25 @@ let tempChannel = require("../data/cache/tempchannel.json");
 
 module.exports.run = async (bot, oldMember, newMember) => {
 
-    if(oldMember.presence.game === null && newMember.presence.game !== null) {
+    if (oldMember.presence.game === null && newMember.presence.game !== null) {
+        
+        if(owner == undefined) return;
+
         // if member starts playing
-        if(!newMember.voiceChannel) return;
+        if (!newMember.voiceChannel) return;
 
-        if(newMember.voiceChannel.name.startsWith("- " + "No Game")) {
-        if(newMember.user.id === tempChannel[newMember.voiceChannel.id].owner) newMember.voiceChannel.setName("- " + newMember.presence.game.name)
+        if (newMember.voiceChannel.name.startsWith("- " + "No Game")) {
+            if (newMember.user.id === tempChannel[newMember.voiceChannel.id].owner) newMember.voiceChannel.setName("- " + newMember.presence.game.name)
         }
-    } else if(oldMember.presence.game !== null && newMember.presence.game === null) {
-        // if member stops playing
-        if(!newMember.voiceChannel) return;
+    } else if (oldMember.presence.game !== null && newMember.presence.game === null) {
+        
+        if(owner == undefined) return;
 
-        if(newMember.voiceChannel.name.startsWith("- " + oldMember.presence.game.name)) {
-        if(newMember.user.id === tempChannel[newMember.voiceChannel.id].owner) newMember.voiceChannel.setName("- " + "No Game")
+        // if member stops playing
+        if (!newMember.voiceChannel) return;
+
+        if (newMember.voiceChannel.name.startsWith("- " + oldMember.presence.game.name)) {
+            if (newMember.user.id === tempChannel[newMember.voiceChannel.id].owner) newMember.voiceChannel.setName("- " + "No Game")
         }
     }
 }
