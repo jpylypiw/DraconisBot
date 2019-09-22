@@ -1,8 +1,8 @@
-# DrachinusBot
+# DraconisBot
 A Discord Bot with Auto Channel function & more
 
 ## Repository purpose: 
-This repository is for a discord bot, which has auto channels and more features like easy to use admin commands etc.
+This repository is for a discord bot, which has auto channels and more features like easy to use admin commands, economy system etc.
 
 ## Restart & Updates
 
