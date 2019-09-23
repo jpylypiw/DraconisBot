@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args, botconfig, dcuser) => {
     .setAuthor(`${bot.user.username} Discord Bot:`)
     .setDescription(`Für eine Übersicht der Commands, nutze bitte **.help**`)
     .setThumbnail(bot.user.avatarURL)
-    .addField(`Über den Bot:`, `Dies ist ein Privater Bot, welcher nur für die Verwaltung des Servers **Drachinus** und **Amarok** dient.`, true)
+    .addField(`Über den Bot:`, `Dies ist (bis jetzt) ein Privater Bot, welcher für die Verwaltung einiger kleiner Server dient.`, true)
     .addField(`Autor:`, `Wendet euch bei Fragen bitte an **@${myUser.tag}**`, true)
     .setFooter(`${botconfig["version"].version} | ${botconfig["version"].date}`)
     .setColor(botconfig["colors"].rot)
