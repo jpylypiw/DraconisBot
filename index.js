@@ -1,5 +1,5 @@
 /* normal = Draconis | test = TestBot */
-let instance = "test";
+let instance = "normal";
 
 /* Modules */
 const Discord = require("discord.js"); 1
@@ -30,6 +30,7 @@ const activities_list = [
     `.help | Autochannel 👍`,
     `Guild Wars 2`,
 ]
+
 let minutes = 120
 
 /* Bot on Start */
