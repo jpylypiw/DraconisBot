@@ -7,7 +7,7 @@ const fs = require("fs");
 const moment = require("moment");
 
 /* Data */
-const login = require("./data/secret/token.json")
+const login = require("./data/secret/token.json");
 const botconfig = require("./data/settings/botconfig.json");
 const userData = require("./data/rpg/userdata.json");
 
