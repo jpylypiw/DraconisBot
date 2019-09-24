@@ -1,8 +1,8 @@
 /* normal = Draconis | test = TestBot */
-let instance = "test";
+let instance = "normal";
 
 /* Modules */
-const Discord = require("discord.js"); 1
+const Discord = require("discord.js");
 const fs = require("fs");
 const moment = require("moment");
 
