@@ -1,15 +1,14 @@
+/* Modules */
 const Discord = require("discord.js");
 const fs = require("fs");
 
-// require
+/* Data */
 let tempChannel = require("../data/cache/tempchannel.json");
 
 module.exports.run = async (bot, oldMember, newMember) => {
 
     if (oldMember.presence.game === null && newMember.presence.game !== null) {
         
-        if(owner == undefined) return;
-
         // if member starts playing
         if (!newMember.voiceChannel) return;
 
@@ -17,8 +16,6 @@ module.exports.run = async (bot, oldMember, newMember) => {
             if (newMember.user.id === tempChannel[newMember.voiceChannel.id].owner) newMember.voiceChannel.setName("- " + newMember.presence.game.name)
         }
     } else if (oldMember.presence.game !== null && newMember.presence.game === null) {
-        
-        if(owner == undefined) return;
 
         // if member stops playing
         if (!newMember.voiceChannel) return;
