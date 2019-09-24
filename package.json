@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nekozbyte/DraconisBot#readme",
   "dependencies": {
     "bufferutil": "^4.0.1",
+    "canvas": "^2.6.0",
     "discord.js": "^11.5.1",
     "erlpack": "github:discordapp/erlpack",
     "fs": "0.0.1-security",
