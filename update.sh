@@ -1,3 +1,5 @@
-screen -S DraconisBot -X quit
+#!/bin/bash
+
+systemctl stop draconisbot
 git pull
-screen -S DraconisBot -d -m node .
+systemctl start draconisbot
