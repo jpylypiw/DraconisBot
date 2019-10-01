@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Discord Bot with Auto Channel function & more",
   "main": "index.js",
+  "engines": { "node": ">=10.13.0" },
+  "keywords": ["discord", "bot", "nodejs"],
+  "contributors": "nekozbyte",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
