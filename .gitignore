@@ -1,5 +1,5 @@
 # remove single files 
-blablabla.file
+token.json
 
 # remove complete language
 *.file
